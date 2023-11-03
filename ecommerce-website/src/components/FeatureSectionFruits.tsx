@@ -69,7 +69,7 @@ const FeatureSectionFruits = () => {
           <button className="text-gray-600 hover:text-accent">
             Vegetables
           </button>
-          <button className="text-gray-600 hover:text-accent">
+          <button className="text-gray-600 hover:text-accent cursor-pointer">
             Bread & Bakery
           </button>
         </div>
