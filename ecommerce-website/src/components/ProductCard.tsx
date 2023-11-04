@@ -21,7 +21,7 @@ const ProductCard: React.FC<propsType> = ({ img, name, price }) => {
         <h3 className="text-xl font-medium">{name}</h3>
         <h3 className="text-2xl font-medium text-red-600">{price}</h3>
 
-        <button className="absolute -top-4 right-2 bg-accent text-white text-[28px] w-[50px] h-[50px] rounded-full grid place-items-center cursor pointer">
+        <button className="absolute -top-4 right-2 bg-green-600 text-white text-[28px] w-[50px] h-[50px] rounded-full grid place-items-center cursor pointer">
           <AiOutlineShopping />
         </button>
       </div>
