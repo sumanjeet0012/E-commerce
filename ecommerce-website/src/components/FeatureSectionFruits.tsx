@@ -39,10 +39,32 @@ const data = [
 
 const FeatureSectionFruits = () => {
 
+  const categories = {
+    all: 'All',
+    fruits: 'Fruits',
+    vegetables: 'Vegetables',
+    bread: 'Bread & Bakery'
+  };
+
+  const [category, setCategory] = useState('fruits');
+
+  const filteredData = data.filter(item => {
+    if(category === 'all') return true;
+    if(category === 'fruits') return item.id >= 5 && item.id < 25;
+    if(category === 'vegetables') return item.id >= 0 && item.id < 4; 
+    if(category === 'bread') return item.id >= 10 && item.id < 15;
+  });
+
   const [page, setPage] = useState(1);
 
   const productsPerPage = 10;
-  const totalPages = Math.ceil(data.length / productsPerPage);
+  // const totalPages = Math.ceil(data.length / productsPerPage);
+  const totalPages = Math.ceil(filteredData.length / productsPerPage);
+
+  const handleCategoryClick = (cat:string) => {
+    setCategory(cat);
+    setPage(1);
+  }
 
   const handlePrevClick = () => {
     setPage(page => Math.max(1, page - 1)); 
@@ -52,7 +74,7 @@ const FeatureSectionFruits = () => {
     setPage(page => Math.min(totalPages, page + 1));
   }
 
-  const displayData = data.slice((page - 1) * productsPerPage, page * productsPerPage);
+  const displayData = filteredData.slice((page - 1) * productsPerPage, page * productsPerPage);
 
   return (
     <div className="container pt-16">
@@ -65,14 +87,35 @@ const FeatureSectionFruits = () => {
         </div>
 
         <div className="space-x-4 mt-8 lg:mt-0">
-          <button className="feature_btn">Fruits</button>
-          <button className="text-gray-600 hover:text-accent">
-            Vegetables
-          </button>
-          <button className="text-gray-600 hover:text-accent cursor-pointer">
-            Bread & Bakery
-          </button>
-        </div>
+
+        <button
+            className={category === 'all' ? 'feature_btn' : ''} 
+            onClick={() => handleCategoryClick('all')}
+          >
+            {categories.all}
+        </button>
+
+      <button 
+        className={category === 'fruits' ? 'feature_btn' : ''}
+        onClick={() => handleCategoryClick('fruits')}
+      >
+        {categories.fruits}  
+      </button>
+
+      <button
+        className={category === 'vegetables' ? 'feature_btn' : ''}
+        onClick={() => handleCategoryClick('vegetables')}  
+      >
+        {categories.vegetables}
+      </button>
+
+      <button
+        className={category === 'bread' ? 'feature_btn' : ''}
+        onClick={() => handleCategoryClick('bread')}
+      >
+        {categories.bread}
+      </button>
+    </div>
       </div>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 pt-8 gap-2">
