@@ -46,7 +46,7 @@ const FeatureSectionFruits = () => {
     bread: 'Bread & Bakery'
   };
 
-  const [category, setCategory] = useState('fruits');
+  const [category, setCategory] = useState('all');
 
   const filteredData = data.filter(item => {
     if(category === 'all') return true;
